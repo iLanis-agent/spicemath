@@ -1,0 +1,135 @@
+[
+  {
+    "fn": "ageTruth",
+    "args": [
+      "ground",
+      18
+    ],
+    "expected": "At 18 months, this ground spice sits well inside the cited 24-to-36-month window - the punch is still in the jar."
+  },
+  {
+    "fn": "ageTruth",
+    "args": [
+      "ground",
+      30
+    ],
+    "expected": "At 30 months, this ground spice is inside the cited 24-to-36-month window but fading toward the edge - smell it before you trust it."
+  },
+  {
+    "fn": "ageTruth",
+    "args": [
+      "ground",
+      40
+    ],
+    "expected": "At 40 months, this ground spice is past the cited 24-to-36-month window - if it smells like nothing, it tastes like nothing."
+  },
+  {
+    "fn": "ageTruth",
+    "args": [
+      "whole",
+      40
+    ],
+    "expected": "At 40 months, this whole spice is inside the cited 36-to-48-month window but fading toward the edge - smell it before you trust it."
+  },
+  {
+    "fn": "ageTruth",
+    "args": [
+      "herb",
+      10
+    ],
+    "expected": "At 10 months, this dried herb sits well inside the cited 12-to-36-month window - the punch is still in the jar."
+  },
+  {
+    "fn": "ageTruth",
+    "args": [
+      "herb",
+      40
+    ],
+    "expected": "At 40 months, this dried herb is past the cited 12-to-36-month window - if it smells like nothing, it tastes like nothing."
+  },
+  {
+    "fn": "ageTruth",
+    "args": [
+      "whole",
+      50
+    ],
+    "expected": "At 50 months, this whole spice is past the cited 36-to-48-month window - if it smells like nothing, it tastes like nothing."
+  },
+  {
+    "fn": "scaleTruth",
+    "args": [
+      1.5,
+      4,
+      6
+    ],
+    "expected": "Scaling 1.5 teaspoons from 4 servings to 6 asks 2.3 teaspoons - the spoons do it directly."
+  },
+  {
+    "fn": "scaleTruth",
+    "args": [
+      2,
+      4,
+      9
+    ],
+    "expected": "Scaling 2.0 teaspoons from 4 servings to 9 asks 4.5 teaspoons - that is 1 tablespoon plus 1.5 teaspoons."
+  },
+  {
+    "fn": "scaleTruth",
+    "args": [
+      1,
+      4,
+      12
+    ],
+    "expected": "Scaling 1.0 teaspoon from 4 servings to 12 asks 3.0 teaspoons - that is exactly 1 tablespoon."
+  },
+  {
+    "fn": "scaleTruth",
+    "args": [
+      0.5,
+      4,
+      2
+    ],
+    "expected": "Scaling 0.5 teaspoons from 4 servings to 2 asks 0.3 teaspoons - the spoons do it directly."
+  },
+  {
+    "fn": "scaleTruth",
+    "args": [
+      1,
+      2,
+      6
+    ],
+    "expected": "Scaling 1.0 teaspoon from 2 servings to 6 asks 3.0 teaspoons - that is exactly 1 tablespoon."
+  },
+  {
+    "fn": "cabinetTruth",
+    "args": [
+      18,
+      4.5
+    ],
+    "expected": "18 jars at $4.50 each is $81.00 of powder - the rack was the cheap part."
+  },
+  {
+    "fn": "cabinetTruth",
+    "args": [
+      30,
+      3.99
+    ],
+    "expected": "30 jars at $3.99 each is $119.70 of powder - the rack was the cheap part."
+  },
+  {
+    "fn": "cabinetTruth",
+    "args": [
+      1,
+      5
+    ],
+    "expected": "1 jar at $5.00 each is $5.00 of powder - the rack was the cheap part."
+  },
+  {
+    "fn": "cabinetTruth",
+    "args": [
+      12,
+      8
+    ],
+    "expected": "12 jars at $8.00 each is $96.00 of powder - the rack was the cheap part."
+  }
+]

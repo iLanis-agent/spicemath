@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spice Math - app</title>
+<style>
+  :root { --accent:#8a5a1f; --ink:#2a2118; --paper:#fbf7f0; --soft:#f3e9da; }
+  * { box-sizing:border-box; margin:0; }
+  body { font-family:Georgia, 'Times New Roman', serif; background:var(--paper); color:var(--ink); line-height:1.55; padding:2rem 1.2rem; }
+  main { max-width:660px; margin:0 auto; }
+  h1 { font-size:1.8rem; color:var(--accent); }
+  .boundary { background:#fdeaea; border-left:6px solid #b03030; color:#5c1c1c; border-radius:6px; padding:1rem 1.1rem; margin:1rem 0 1.4rem; }
+  .boundary strong { display:block; margin-bottom:.3rem; }
+  .panel { background:var(--soft); border-left:5px solid var(--accent); border-radius:6px; padding:1rem 1.1rem; margin-bottom:1.1rem; }
+  h2 { font-size:1.1rem; margin-bottom:.6rem; }
+  p.note { font-size:.9rem; margin-bottom:.4rem; }
+  label { display:block; font-size:.9rem; margin:.45rem 0 .1rem; }
+  input, select { width:100%; padding:.45rem .55rem; font-size:1rem; border:1px solid #d3bfa0; border-radius:6px; background:#fff; color:var(--ink); }
+  .out { margin-top:.7rem; font-size:.98rem; background:#fff; border:1px dashed #d3bfa0; border-radius:6px; padding:.6rem .7rem; min-height:2.4rem; }
+  .out.err { border-color:#b03030; color:#8a1f1f; font-style:normal; }
+  footer { margin-top:1.8rem; font-size:.85rem; color:#6f6252; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Spice Math</h1>
+  <div class="boundary">
+    <strong>Boundary: illustrative arithmetic only</strong>
+    The freshness windows are a pantry rule people cite, and flavor fade is the only thing at stake - this page never makes a food-safety call. The rest is your own arithmetic.
+  </div>
+
+  <div class="panel">
+    <h2>The age truth</h2>
+    <p class="note">Months in the rack against the cited window (ground 2-3 years, whole 3-4, dried herbs 1-3).</p>
+    <label for="a-type">Kind</label>
+    <select id="a-type">
+      <option value="ground" selected>Ground spice</option>
+      <option value="whole">Whole spice</option>
+      <option value="herb">Dried herb</option>
+    </select>
+    <label for="a-months">Months in the rack</label>
+    <input id="a-months" type="number" min="0" step="1" value="30">
+    <div class="out" id="a-out"></div>
+  </div>
+
+  <div class="panel">
+    <h2>The scale truth</h2>
+    <p class="note">Recipe teaspoons scaled to your servings, in spoons you own.</p>
+    <label for="s-tsp">Recipe amount (teaspoons)</label>
+    <input id="s-tsp" type="number" min="0" step="0.25" value="2">
+    <label for="s-recipe">Recipe servings</label>
+    <input id="s-recipe" type="number" min="0" step="1" value="4">
+    <label for="s-yours">Your servings</label>
+    <input id="s-yours" type="number" min="0" step="1" value="9">
+    <div class="out" id="s-out"></div>
+  </div>
+
+  <div class="panel">
+    <h2>The cabinet truth</h2>
+    <p class="note">What the rack actually holds.</p>
+    <label for="c-jars">Jars in the cabinet</label>
+    <input id="c-jars" type="number" min="0" step="1" value="18">
+    <label for="c-price">Average price per jar ($)</label>
+    <input id="c-price" type="number" min="0" step="0.01" value="4.5">
+    <div class="out" id="c-out"></div>
+  </div>
+
+  <footer>Spice Math is exact arithmetic over one cited pantry rule and your own jars. <a href="index.html">Why it exists</a>.</footer>
+</main>
+<script src="engine.js"></script>
+<script>
+  const num = (id) => Number(document.getElementById(id).value);
+  function show(out, fn) {
+    try {
+      const text = fn();
+      out.textContent = text;
+      out.classList.remove("err");
+    } catch (e) {
+      out.textContent = e.message;
+      out.classList.add("err");
+    }
+  }
+  const aOut = document.getElementById("a-out");
+  const sOut = document.getElementById("s-out");
+  const cOut = document.getElementById("c-out");
+  function recalc() {
+    show(aOut, () => ageTruth(document.getElementById("a-type").value, num("a-months")));
+    show(sOut, () => scaleTruth(num("s-tsp"), num("s-recipe"), num("s-yours")));
+    show(cOut, () => cabinetTruth(num("c-jars"), num("c-price")));
+  }
+  document.querySelectorAll("input, select").forEach((el) => {
+    el.addEventListener("input", recalc);
+    el.addEventListener("change", recalc);
+  });
+  recalc();
+</script>
+</body>
+</html>
